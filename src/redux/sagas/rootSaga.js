@@ -1,10 +1,9 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 import { fetchDataSuccess, fetchDataError } from '../actions';
-import API from '../api'; 
 
 function* fetchDataSaga(action) {
   try {
-    const data = yield call(API.fetchData);
+    const data = yield call();
     yield put(fetchDataSuccess(data)); 
   } catch (error) {
     yield put(fetchDataError(error)); 
