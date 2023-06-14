@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { FaBars } from "react-icons/fa";
 import { NavLink as Link } from "react-router-dom";
 import logoImage from "../img/icons8-question-mark-96.png";
+import Logout from "./Logout";
 
 const Nav = styled.nav`
   background: #000;
@@ -51,35 +52,7 @@ const NavMenu = styled.div`
   }
 `;
 
-const NavBtn = styled.nav`
-  display: flex;
-  align-items: center;
-  margin-right: 24px;
-
-  @media screen and (max-width: 600px) {
-    display: none;
-  }
-`;
-
-const NavBtnLink = styled(Link)`
-  border-radius: 4px;
-  background: #fff;
-  padding: 10px 22px;
-  color: #010606;
-  border: solid 1px;
-  outline: none;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  text-decoration: none;
-
-  &:hover {
-    transition: all 0.2s ease-in-out;
-    background: transparent;
-    color: #fff;
-  }
-`;
-
-const Header = () => (
+const Header = ({ showLogout }) => (
   <>
     <Nav>
       <NavLink to="/">
@@ -87,9 +60,7 @@ const Header = () => (
         <h1>DevQuiz&Chat</h1>
       </NavLink>
       <Bars />
-      <NavBtn>
-        <NavBtnLink to="/">Log in</NavBtnLink>
-      </NavBtn>
+      {showLogout && <Logout />}
     </Nav>
   </>
 );

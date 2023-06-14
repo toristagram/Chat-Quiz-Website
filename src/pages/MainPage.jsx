@@ -4,9 +4,9 @@ import Header from '../components/Header';
 const MainPage = () => {
   return (
     <div>
-      <Header />
+      <Header showLogout/>
     </div>
   )
 }
 
-export default MainPage
+export default MainPage;
