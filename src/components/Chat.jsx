@@ -26,28 +26,11 @@ const ChatContainer = styled.div`
   overflow: hidden;
 `;
 
-const Navbar = styled.div`
-  height: 60px;
-  background-color: #9db0d4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  color: white;
-  font-weight: bold;
-  font-size: large;
-  width: 100%;
-
-  h2 {
-    text-align: center;
-  }
-`;
-
 const MessageContainer = styled.div`
   flex: 1;
   overflow-y: auto;
   padding: 1rem;
-  background-color: aliceblue;
+  background-color: #2a346f;
   overflow: scroll;
 `;
 const MessagesStyled = styled.div`
@@ -57,7 +40,6 @@ const MessagesStyled = styled.div`
   margin-bottom: 20px;
   padding: 10px;
   height: calc(100% - 150px);
-
   align-items: flex-end;
 `;
 const Message = styled.div`
@@ -72,16 +54,30 @@ const Message = styled.div`
     border-radius: 10px 0px 10px 10px;
     max-width: max-content;
   }
-`;
 
-css`
-  .message-right {
-    text-align: right;
-  }
+  ${(props) =>
+    props.isUserMessage &&
+    css`
+      align-self: flex-end;
+      text-align: right;
 
-  .message-left {
-    text-align: left;
-  }
+      p {
+        border-radius: 10px 10px 0px 10px;
+      }
+    `}
+
+    ${(props) =>
+    !props.isUserMessage &&
+    css`
+      align-self: flex-start;
+      text-align: left;
+      
+
+      p {
+        border-radius: 0px 10px 10px 10px;
+        background-color: #d1d8e8;
+      }
+    `}
 `;
 
 const InputContainer = styled.div`
@@ -112,7 +108,7 @@ const SendButton = styled.button`
   font-size: 18px;
   padding: 10px 15px;
   color: #fff;
-  background-color: #a3c1ff;
+  background-color: #2a346f;
   cursor: pointer;
 
   &:hover {
@@ -128,14 +124,13 @@ function Chat() {
   const [inputValue, setInputValue] = useState("");
   const authenticatedUser = localStorage.getItem("authenticated");
 
-
   const sendMessage = async () => {
     if (inputValue.trim() === "") return;
 
     await addDoc(messagesRef, {
       text: inputValue,
-      createdAt: new Date(),
-      sender: authenticatedUser
+      createdAt: new Date().toISOString(),
+      sender: authenticatedUser,
     });
 
     setInputValue("");
@@ -157,7 +152,7 @@ function Chat() {
         ...doc.data(),
       }));
 
-      updatedMessages.sort((a, b) => a.createdAt - b.createdAt);
+      updatedMessages.sort((a, b) => b.id.localeCompare(a.id));
       updatedMessages.reverse();
 
       setMessages(updatedMessages);
@@ -199,9 +194,9 @@ function Chat() {
   return (
     <MainLayout>
       <ChatContainer>
-        <Navbar>
+        {/* <Navbar>
           <h2>Welcome to the chat!</h2>
-        </Navbar>
+        </Navbar> */}
         <MessageContainer id="chat-container">
           <MessagesStyled>
             {messages &&
@@ -211,9 +206,7 @@ function Chat() {
                 .map((message) => (
                   <Message
                     key={message.id}
-                    className={
-                      message.sender === authenticatedUser ? "message-left" : "message-right"
-                    }
+                    isUserMessage={message.sender === authenticatedUser}
                   >
                     <p>{message.text}</p>
                   </Message>
