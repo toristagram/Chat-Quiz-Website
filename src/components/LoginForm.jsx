@@ -121,6 +121,13 @@ const LoginForm = () => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSubmit(onSubmit)();
+    }
+  };
+
   return (
     <>
       <AppContainer>
@@ -137,11 +144,15 @@ const LoginForm = () => {
               type="password"
               placeholder="Password"
               {...register("password", { required: true })}
+              onKeyDown={handleKeyDown}
             />
             {error && <StyledError>Wrong username or password</StyledError>}
           </InputContainer>
           <ButtonContainer>
-            <StyledButton type="submit" onClick={handleSubmit(onSubmit)}>
+            <StyledButton
+              type="submit"
+              onClick={handleSubmit(onSubmit)}
+            >
               Log In
             </StyledButton>
           </ButtonContainer>

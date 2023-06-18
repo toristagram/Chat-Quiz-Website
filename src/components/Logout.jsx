@@ -2,6 +2,16 @@ import React, { useState } from "react";
 import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
 
+const Avatar = styled.div`
+  display: flex;
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+`;
+
 const NavBtn = styled.nav`
   display: flex;
   align-items: center;
@@ -32,6 +42,7 @@ const NavBtnLink = styled(Link)`
 
 const Logout = () => {
   const [authenticated, setAuthenticated] = useState(null);
+  const [userImages, setUserImages] = useState({});
 
   const logOut = () => {
     localStorage.removeItem("authenticated");
@@ -39,8 +50,15 @@ const Logout = () => {
     console.log("logout success");
   };
 
+  const avatarImage = authenticated ? userImages[authenticated]?.image : null;
+
   return (
     <>
+      {authenticated && (
+        <Avatar>
+          <img src={avatarImage} alt="" />
+        </Avatar>
+      )}
       <NavBtn>
         <NavBtnLink to="/" onClick={logOut}>
           Log out
