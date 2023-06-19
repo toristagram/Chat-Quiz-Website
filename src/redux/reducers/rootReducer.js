@@ -2,6 +2,7 @@ const initialState = {
     data: null,
     loading: false,
     error: null,
+    score: 0,
   };
   
   const rootReducer = (state = initialState, action) => {
@@ -12,6 +13,9 @@ const initialState = {
         return { ...state, loading: false, data: action.payload };
       case 'FETCH_DATA_ERROR':
         return { ...state, loading: false, error: action.payload };
+      case 'CHANGE_SCORE':
+        return { ...state, loading: false, score: action.payload };
+
       default:
         return state;
     }

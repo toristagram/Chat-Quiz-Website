@@ -1,24 +1,24 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import styled from "styled-components";
 
 const QuizContainer = styled.div`
+flex: 1;
   text-align: center;
-  width: 100%;
-  max-width: 800px;
+  max-width: 40%;
   flex-direction: column;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
   padding-top: 0;
   display: flex;
   position: relative;
-  margin-bottom: 100px;
+  margin-top: 12%;
+  
   h2 {
     color: #212121;
     font-family: Poppins, sans-serif;
-    font-size: 72px;
+    font-size: 52px;
     font-weight: 600;
   }
 `;
@@ -40,9 +40,9 @@ const BtnContainer = styled.div`
     border: none;
     color: #ffffff;
     text-align: center;
-    font-size: 28px;
+    font-size: 20px;
     padding: 20px;
-    width: 200px;
+    width: 150px;
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
@@ -76,13 +76,13 @@ const BtnContainer = styled.div`
 
   .grey-btn {
     border-radius: 4px;
-    background-color: #c7cbca;
+    background-color: #9d9d9d;
     border: none;
     color: #ffffff;
     text-align: center;
-    font-size: 28px;
+    font-size: 20px;
     padding: 20px;
-    width: 200px;
+    width: 150px;
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
@@ -155,9 +155,11 @@ const ReadyForQuiz = () => {
     <QuizContainer>
       <h2>Ready for the Quiz?</h2>
       <BtnContainer>
+        <Link to="/quizPage">
         <button onClick={handleStart} className="blue-btn">
           <span>START</span>
         </button>
+        </Link>
         <button onClick={handleCancel} className="grey-btn">
           <span>CANCEL</span>
         </button>

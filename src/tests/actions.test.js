@@ -1,4 +1,4 @@
-import { fetchDataSuccess, fetchDataError } from '../redux/actions';
+import { fetchDataSuccess, fetchDataError, handleChangeScore } from '../redux/actions';
 
 describe('fetchDataSuccess', () => {
   it('should create an action with the FETCH_DATA_SUCCESS type and payload', () => {
@@ -21,5 +21,17 @@ describe('fetchDataError', () => {
       type: 'FETCH_DATA_ERROR',
       payload: error,
     });
+  });
+});
+
+describe('handleChangeScore', () => {
+  it('should create an action to change the score', () => {
+    const score = 42;
+    const expectedAction = {
+      type: 'CHANGE_SCORE',
+      payload: score,
+    };
+    const action = handleChangeScore(score);
+    expect(action).toEqual(expectedAction);
   });
 });

@@ -11,19 +11,20 @@ import {
 } from "firebase/firestore";
 
 export const MainLayout = styled.div`
-  height: 100vh;
+  height: 75vh;
   display: flex;
-  justify-content: center;
+  width: 50%;
 `;
 
 const ChatContainer = styled.div`
+flex: 2;
   margin-top: 50px;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  width: 45%;
   height: 80%;
   overflow: hidden;
+  margin-left: 100px;
 `;
 
 const MessageContainer = styled.div`
@@ -194,9 +195,6 @@ function Chat() {
   return (
     <MainLayout>
       <ChatContainer>
-        {/* <Navbar>
-          <h2>Welcome to the chat!</h2>
-        </Navbar> */}
         <MessageContainer id="chat-container">
           <MessagesStyled>
             {messages &&

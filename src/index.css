@@ -23,3 +23,11 @@ code {
 body{
   background-color: #eff2f1;;
 }
+
+.content-wrapper{
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 50px;
+}

@@ -6,6 +6,7 @@ describe('rootReducer', () => {
       data: null,
       loading: false,
       error: null,
+      score: 0,
     };
     
     const action = { type: 'UNKNOWN_ACTION' };
@@ -59,5 +60,13 @@ describe('rootReducer', () => {
     expect(nextState.loading).toBe(false);
     expect(nextState.data).toBeNull();
     expect(nextState.error).toEqual(mockError);
+  });
+
+  it('should handle CHANGE_SCORE', () => {
+    const initialState = { score: 0 };
+    const newScore = 42;
+    const action = { type: 'CHANGE_SCORE', payload: newScore };
+    const nextState = rootReducer(initialState, action);
+    expect(nextState.score).toBe(newScore);
   });
 });

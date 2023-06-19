@@ -1,9 +1,14 @@
 export const fetchDataSuccess = (data) => ({
-    type: 'FETCH_DATA_SUCCESS',
-    payload: data,
-  });
-  
-  export const fetchDataError = (error) => ({
-    type: 'FETCH_DATA_ERROR',
-    payload: error,
-  });
+  type: "FETCH_DATA_SUCCESS",
+  payload: data,
+});
+
+export const fetchDataError = (error) => ({
+  type: "FETCH_DATA_ERROR",
+  payload: error,
+});
+
+export const handleChangeScore = (score) => ({
+  type: "CHANGE_SCORE",
+  payload: score,
+});

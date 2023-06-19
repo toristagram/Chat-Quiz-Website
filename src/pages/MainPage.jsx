@@ -7,8 +7,10 @@ const MainPage = () => {
   return (
     <div>
       <Header showLogout/>
+      <div className="content-wrapper">
       <Chat />
       <ReadyForQuiz />
+      </div>
     </div>
   )
 }

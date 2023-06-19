@@ -45,7 +45,7 @@ const Bars = styled(FaBars)`
 const Header = ({ showLogout }) => (
   <>
     <Nav>
-      <NavLink to="/">
+      <NavLink to="/mainPage">
         <img src={logoImage} alt="logo" />
         <h1>DevQuiz&Chat</h1>
       </NavLink>
