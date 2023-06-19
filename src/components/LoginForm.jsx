@@ -102,8 +102,9 @@ const LoginForm = () => {
   const [error, setError] = useState(false);
 
   const users = [
-    { username: "user1", password: "pass1" },
-    { username: "user2", password: "pass2" },
+    { username: "user1", password: "pass1", score: 0 },
+    { username: "user2", password: "pass2", score: 0 },
+    { username: "user3", password: "pass3", score: 0 },
   ];
 
   const { register, handleSubmit } = useForm();
@@ -149,10 +150,7 @@ const LoginForm = () => {
             {error && <StyledError>Wrong username or password</StyledError>}
           </InputContainer>
           <ButtonContainer>
-            <StyledButton
-              type="submit"
-              onClick={handleSubmit(onSubmit)}
-            >
+            <StyledButton type="submit" onClick={handleSubmit(onSubmit)}>
               Log In
             </StyledButton>
           </ButtonContainer>
